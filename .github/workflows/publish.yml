@@ -45,7 +45,7 @@ jobs:
         env:
           ACTOR: ${{ github.event_name == 'schedule' && 'github-actions[bot]' || '${{ github.actor }}' }}
           ACTOR_EMAIL: ${{ github.event_name == 'schedule' && '41898282+github-actions[bot]@users.noreply.github.com' || '${{ github.actor }}@users.noreply.github.com' }}
-          COMMIT_MESSAGE: ${{ github.event_name == 'schedule' && '[scheduled] Deploy to gh-pages branch' || 'Deploy to gh-pages branch' }}
+          COMMIT_MESSAGE: ${{ github.event_name == 'schedule' && '[scheduled] Deploy to gh-pages branch' || 'Deploy to gh-pages branch test' }}
         run: |
           git config --global user.name "$ACTOR"
           git config --global user.email "$ACTOR_EMAIL"

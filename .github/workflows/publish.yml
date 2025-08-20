@@ -43,12 +43,12 @@ jobs:
           path: build/site
       - name: Push the static site content to gh-pages branch
         env:
-          ACTOR: ${{ github.event_name == 'schedule' && 'github-actions[bot]' || '${{ github.actor }}' }}
-          ACTOR_EMAIL: ${{ github.event_name == 'schedule' && '41898282+github-actions[bot]@users.noreply.github.com' || '${{ github.actor }}@users.noreply.github.com' }}
+          ACTOR: ${{ github.event_name == 'schedule' && 'github-actions[bot]' || github.actor }}
+          ACTOR_EMAIL: ${{ github.event_name == 'schedule' && '41898282+github-actions[bot]' || github.actor }}
           COMMIT_MESSAGE: ${{ github.event_name == 'schedule' && '[scheduled] Deploy to gh-pages branch' || 'Deploy to gh-pages branch' }}
         run: |
-          git config --global user.name "$ACTOR"
-          git config --global user.email "$ACTOR_EMAIL"
+          git config --global user.name "${ACTOR}"
+          git config --global user.email "${ACTOR_EMAIL}@users.noreply.github.com"
           mv build/site ../site-temp
           git checkout --orphan gh-pages
           git rm -rf .
